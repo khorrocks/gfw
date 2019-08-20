@@ -1,5 +1,5 @@
 export default {
-  widget: 'national-land-cover-database',
+  widget: 'bubble-widget-test',
   title: 'Land cover change in {location}',
   large: true,
   categories: ['land-cover'],

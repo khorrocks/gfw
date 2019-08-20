@@ -1,4 +1,4 @@
-import Component from 'components/widgets/components/widget-sankey';
+import Component from 'components/widgets/components/widget-bubble-chart';
 import getData from './actions';
 import getProps from './selectors';
 import config from './config';
