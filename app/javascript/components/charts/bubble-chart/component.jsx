@@ -112,15 +112,8 @@ class BubbleChart extends PureComponent {
     const { x, y, payload } = props;
 
     return (
-      <g transform={`translate(${x},${y})`}>
-        <text
-          x={0}
-          y={0}
-          dy={16}
-          textAnchor="end"
-          fill="#666"
-          transform="rotate(-35)"
-        >
+      <g transform={`translate(${x + 10}, ${y - 20})`}>
+        <text x={0} y={0} textAnchor="end" fill="#666" transform="rotate(-35)">
           {payload.value}
         </text>
       </g>
@@ -151,24 +144,30 @@ class BubbleChart extends PureComponent {
     return (
       <ResponsiveContainer width="99%" height={height / length}>
         <ScatterChart margin={{ top: 10, right: 0, bottom: 0, left: 0 }}>
-          {this.renderYAxis({ value: 'Monday', position: 'insideRight' })}
+          {this.renderYAxis({
+            value: xAxis ? '' : 'Monday',
+            position: 'insideRight'
+          })}
           {xAxis && (
             <XAxis
               type="category"
               dataKey="hour"
               interval={0}
-              // tick={this.renderAxisTick}
+              tick={this.renderAxisTick}
               orientation="top"
               padding={{ top: 20 }}
+              tickMargin={0}
             />
           )}
           <ZAxis type="number" dataKey="value" domain={domain} range={range} />
-          <Tooltip
-            cursor={{ strokeDasharray: '3 3' }}
-            wrapperStyle={{ zindex: 1000 }}
-            content={this.renderTooltip}
-          />
-          <Scatter data={data} fill="#8884d8" />
+          {!xAxis && (
+            <Tooltip
+              cursor={{ strokeDasharray: '3 3' }}
+              wrapperStyle={{ zindex: 1000 }}
+              content={this.renderTooltip}
+            />
+          )}
+          {<Scatter data={data} fill={xAxis ? 'transparent' : '#8884d8'} />}
         </ScatterChart>
       </ResponsiveContainer>
     );
@@ -190,7 +189,12 @@ class BubbleChart extends PureComponent {
 
     const height = 250;
     const rawdata = this.getData();
-    const data = [...rawdata, ...rawdata, ...rawdata];
+    const data = [
+      rawdata[0], // need to duplicate the first data entry
+      ...rawdata,
+      ...rawdata,
+      ...rawdata
+    ];
 
     return (
       <div className={cx('c-bubble-chart', className)} style={{ height }}>
