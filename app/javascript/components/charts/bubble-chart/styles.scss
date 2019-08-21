@@ -1,10 +1,12 @@
 @import '~styles/settings.scss';
 
-.c-pie-chart {
+.c-bubble-chart {
   height: 100%;
   width: 100%;
 
-  .recharts-wrapper {
-    display: inline-block;
+  svg.recharts-surface {
+    .recharts-scatter {
+      transform: translateY(#{rem(16px)});
+    }
   }
 }
