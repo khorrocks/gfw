@@ -18,67 +18,64 @@ import './styles.scss';
 class BubbleChart extends PureComponent {
   parseDomain() {
     const data = this.getData();
+    const values = Object.values(data);
     return [
       0,
-      Math.max.apply(null, data.map(d => d.map(entry => entry.value)).flat())
+      Math.max.apply(null, values.map(d => d.map(entry => entry.value)).flat())
     ];
   }
 
   getData() {
-    const data01 = [
-      { hour: 'key', index: 1, value: 170 },
-      { hour: 'key', index: 1, value: 180 },
-      { hour: 'key', index: 1, value: 150 },
-      { hour: 'key', index: 1, value: 120 },
-      { hour: 'key', index: 1, value: 200 },
-      { hour: 'key', index: 1, value: 300 },
-      { hour: 'key', index: 1, value: 400 },
-      { hour: 'key', index: 1, value: 200 },
-      { hour: 'key', index: 1, value: 100 },
-      { hour: 'key', index: 1, value: 150 },
-      { hour: 'key', index: 1, value: 160 },
-      { hour: 'key', index: 1, value: 170 },
-      { hour: 'key', index: 1, value: 180 },
-      { hour: 'key', index: 1, value: 144 },
-      { hour: 'key', index: 1, value: 166 },
-      { hour: 'key', index: 1, value: 145 },
-      { hour: 'key', index: 1, value: 150 },
-      { hour: 'key', index: 1, value: 170 },
-      { hour: 'key', index: 1, value: 180 },
-      { hour: 'key', index: 1, value: 165 },
-      { hour: 'key', index: 1, value: 130 },
-      { hour: 'key', index: 1, value: 140 },
-      { hour: 'key', index: 1, value: 170 },
-      { hour: 'key', index: 1, value: 180 }
-    ];
-
-    const data02 = [
-      { hour: 'key', index: 1, value: 160 },
-      { hour: 'key', index: 1, value: 180 },
-      { hour: 'key', index: 1, value: 150 },
-      { hour: 'key', index: 1, value: 120 },
-      { hour: 'key', index: 1, value: 200 },
-      { hour: 'key', index: 1, value: 300 },
-      { hour: 'key', index: 1, value: 100 },
-      { hour: 'key', index: 1, value: 200 },
-      { hour: 'key', index: 1, value: 100 },
-      { hour: 'key', index: 1, value: 150 },
-      { hour: 'key', index: 1, value: 160 },
-      { hour: 'key', index: 1, value: 160 },
-      { hour: 'key', index: 1, value: 180 },
-      { hour: 'key', index: 1, value: 144 },
-      { hour: 'key', index: 1, value: 166 },
-      { hour: 'key', index: 1, value: 145 },
-      { hour: 'key', index: 1, value: 150 },
-      { hour: 'key', index: 1, value: 160 },
-      { hour: 'key', index: 1, value: 180 },
-      { hour: 'key', index: 1, value: 165 },
-      { hour: 'key', index: 1, value: 130 },
-      { hour: 'key', index: 1, value: 140 },
-      { hour: 'key', index: 1, value: 160 },
-      { hour: 'key', index: 1, value: 180 }
-    ];
-    return [data01, data02];
+    return {
+      Forest: [
+        { hour: 'Forest', index: 1, value: 170 },
+        { hour: 'Wetlands', index: 1, value: 180 },
+        { hour: 'Grassland', index: 1, value: 150 },
+        { hour: 'Cropland', index: 1, value: 120 },
+        { hour: 'Bare', index: 1, value: 200 },
+        { hour: 'Settlements', index: 1, value: 300 }
+      ],
+      Wetlands: [
+        { hour: 'Forest', index: 1, value: 200 },
+        { hour: 'Wetlands', index: 1, value: 20 },
+        { hour: 'Grassland', index: 1, value: 40 },
+        { hour: 'Cropland', index: 1, value: 350 },
+        { hour: 'Bare', index: 1, value: 10 },
+        { hour: 'Settlements', index: 1, value: 170 }
+      ],
+      Grassland: [
+        { hour: 'Forest', index: 1, value: 130 },
+        { hour: 'Wetlands', index: 1, value: 60 },
+        { hour: 'Grassland', index: 1, value: 210 },
+        { hour: 'Cropland', index: 1, value: 140 },
+        { hour: 'Bare', index: 1, value: 30 },
+        { hour: 'Settlements', index: 1, value: 0 }
+      ],
+      Cropland: [
+        { hour: 'Forest', index: 1, value: 130 },
+        { hour: 'Wetlands', index: 1, value: 60 },
+        { hour: 'Grassland', index: 1, value: 210 },
+        { hour: 'Cropland', index: 1, value: 140 },
+        { hour: 'Bare', index: 1, value: 30 },
+        { hour: 'Settlements', index: 1, value: 0 }
+      ],
+      Bare: [
+        { hour: 'Forest', index: 1, value: 130 },
+        { hour: 'Wetlands', index: 1, value: 60 },
+        { hour: 'Grassland', index: 1, value: 210 },
+        { hour: 'Cropland', index: 1, value: 140 },
+        { hour: 'Bare', index: 1, value: 30 },
+        { hour: 'Settlements', index: 1, value: 0 }
+      ],
+      Settlements: [
+        { hour: 'Forest', index: 1, value: 130 },
+        { hour: 'Wetlands', index: 1, value: 60 },
+        { hour: 'Grassland', index: 1, value: 210 },
+        { hour: 'Cropland', index: 1, value: 140 },
+        { hour: 'Bare', index: 1, value: 30 },
+        { hour: 'Settlements', index: 1, value: 0 }
+      ]
+    };
   }
 
   renderTooltip(props) {
@@ -137,15 +134,15 @@ class BubbleChart extends PureComponent {
   }
 
   renderScatterChart(props) {
-    const { data, xAxis, length, height } = props;
+    const { data, xAxis, length, height, key, label } = props;
     const domain = this.parseDomain();
     const range = [16, 225];
 
     return (
-      <ResponsiveContainer width="99%" height={height / length}>
+      <ResponsiveContainer width="99%" height={height / length} key={key}>
         <ScatterChart margin={{ top: 10, right: 0, bottom: 0, left: 0 }}>
           {this.renderYAxis({
-            value: xAxis ? '' : 'Monday',
+            value: xAxis ? '' : label,
             position: 'insideRight'
           })}
           {xAxis && (
@@ -188,23 +185,21 @@ class BubbleChart extends PureComponent {
     } = this.props;
 
     const height = 250;
-    const rawdata = this.getData();
-    const data = [
-      rawdata[0], // need to duplicate the first data entry
-      ...rawdata,
-      ...rawdata,
-      ...rawdata
-    ];
+    const data = this.getData();
+    const keys = Object.keys(data);
+    const values = Object.values(data);
 
     return (
       <div className={cx('c-bubble-chart', className)} style={{ height }}>
-        {rawdata &&
-          data.map((d, i) =>
+        {values &&
+          values.map((d, i) =>
             this.renderScatterChart({
               data: d,
               xAxis: i === 0,
               length: data.length,
-              height
+              height,
+              key: `scatter-${i}`,
+              label: keys[i]
             })
           )}
       </div>
